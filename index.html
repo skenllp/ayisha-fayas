@@ -1080,7 +1080,7 @@ h1,h2,h3{ margin:0; font-weight:500; }
 </div><!-- /#page -->
 
 <!-- MUSIC TOGGLE (wire a track src to #bg-music to activate) -->
-<button id="music-toggle" class="muted" aria-label="Toggle music" aria-pressed="false">
+<button id="music-toggle" aria-label="Toggle music" aria-pressed="false">
   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <rect class="bar" x="4" y="10" width="3" height="10" rx="1" fill="currentColor"/>
     <rect class="bar" x="10.5" y="6" width="3" height="14" rx="1" fill="currentColor"/>
@@ -1168,11 +1168,12 @@ function openGate(){
   setTimeout(()=>{
     if(bgMusic && bgMusic.paused){
       bgMusic.play().then(()=>{
-        musicToggle.classList.remove('muted');
         musicToggle.setAttribute('aria-pressed','true');
-      }).catch(()=>{
+        console.log('Music started playing');
+      }).catch((err)=>{
         // Browser blocked autoplay - user needs to click music toggle
-        console.log('Music autoplay blocked - click the music button to play');
+        musicToggle.classList.add('muted');
+        console.log('Music autoplay blocked - click the music button to play', err);
       });
     }
   }, 800);
@@ -1281,12 +1282,20 @@ rvClose.addEventListener('click', closeReception);
 ============================================================ */
 const musicToggle = document.getElementById('music-toggle');
 const bgMusic = document.getElementById('bg-music');
-if(!bgMusic.src){ musicToggle.style.display = 'none'; }
+
+// Ensure music toggle is visible
+if(!bgMusic || !bgMusic.getAttribute('src')){ 
+  musicToggle.style.display = 'none'; 
+}
+
 musicToggle.addEventListener('click', ()=>{
   if(bgMusic.paused){
-    bgMusic.play().catch(()=>{});
-    musicToggle.classList.remove('muted');
-    musicToggle.setAttribute('aria-pressed','true');
+    bgMusic.play().then(()=>{
+      musicToggle.classList.remove('muted');
+      musicToggle.setAttribute('aria-pressed','true');
+    }).catch((err)=>{
+      console.log('Music play failed:', err);
+    });
   } else {
     bgMusic.pause();
     musicToggle.classList.add('muted');
