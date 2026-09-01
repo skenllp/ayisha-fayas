@@ -1109,6 +1109,38 @@ const BUTTERFLY_SVG = `
 document.querySelectorAll('.butterfly').forEach(el => { el.innerHTML = BUTTERFLY_SVG; });
 
 /* ============================================================
+   MUSIC SETUP — initialize first
+============================================================ */
+const musicToggle = document.getElementById('music-toggle');
+const bgMusic = document.getElementById('bg-music');
+
+// Ensure music toggle is visible
+if(!bgMusic || !bgMusic.getAttribute('src')){ 
+  if(musicToggle) musicToggle.style.display = 'none'; 
+} else {
+  console.log('Music file found:', bgMusic.getAttribute('src'));
+}
+
+if(musicToggle){
+  musicToggle.addEventListener('click', ()=>{
+    if(bgMusic.paused){
+      bgMusic.play().then(()=>{
+        musicToggle.classList.remove('muted');
+        musicToggle.setAttribute('aria-pressed','true');
+        console.log('Music started via button click');
+      }).catch((err)=>{
+        console.log('Music play failed:', err);
+      });
+    } else {
+      bgMusic.pause();
+      musicToggle.classList.add('muted');
+      musicToggle.setAttribute('aria-pressed','false');
+      console.log('Music paused via button click');
+    }
+  });
+}
+
+/* ============================================================
    PETALS — a few, scattered, per floral section
 ============================================================ */
 function scatterPetals(sectionEl, count){
@@ -1276,32 +1308,6 @@ function closeReception(){
   if(musicWasPlaying) bgMusic.play().catch(()=>{});
 }
 rvClose.addEventListener('click', closeReception);
-
-/* ============================================================
-   MUSIC TOGGLE — activates automatically once a track is wired
-============================================================ */
-const musicToggle = document.getElementById('music-toggle');
-const bgMusic = document.getElementById('bg-music');
-
-// Ensure music toggle is visible
-if(!bgMusic || !bgMusic.getAttribute('src')){ 
-  musicToggle.style.display = 'none'; 
-}
-
-musicToggle.addEventListener('click', ()=>{
-  if(bgMusic.paused){
-    bgMusic.play().then(()=>{
-      musicToggle.classList.remove('muted');
-      musicToggle.setAttribute('aria-pressed','true');
-    }).catch((err)=>{
-      console.log('Music play failed:', err);
-    });
-  } else {
-    bgMusic.pause();
-    musicToggle.classList.add('muted');
-    musicToggle.setAttribute('aria-pressed','false');
-  }
-});
 </script>
 </body>
 </html>
