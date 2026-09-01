@@ -9,7 +9,7 @@
 <meta property="og:description" content="Join us in celebrating the Mehandi &amp; Nikkah of Dr Ayisha Sherin &amp; Dr Mohammed Fayas on 17–18 October 2026.">
 <meta property="og:image" content="https://ayisha-fayas.vercel.app/assets/images/og-image.jpg">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://ayisha-fayas.vercel.app/">
+<meta property="og:url" content="https://ayisha-fayas.vercel.app">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Dr Ayisha Sherin & Dr Mohammed Fayas — Wedding Invitation">
 <meta name="twitter:description" content="Join us in celebrating the Mehandi &amp; Nikkah of Dr Ayisha Sherin &amp; Dr Mohammed Fayas on 17–18 October 2026.">
@@ -54,7 +54,6 @@ body{
   color:var(--ink);
   font-family:var(--font-display);
   font-weight:500;
-  overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
 }
 body.locked{ overflow:hidden; height:100vh; }
@@ -64,9 +63,12 @@ a{ color:inherit; }
 
 ::selection{ background:var(--rose); color:var(--paper-soft); }
 
+/* PNG butterflies hidden until gate dissolves */
+.png-butterfly{ opacity:0; transition:opacity 1.8s ease 0.5s; }
+.png-butterfly.visible{ opacity:1; }
+
 /* Paper grain — fine handmade-paper texture, very low opacity, static (cheap) */
-.grain{
-  position:fixed; inset:0; z-index:2; pointer-events:none;
+.grain{  position:fixed; inset:0; z-index:2; pointer-events:none;
   opacity:0.045; mix-blend-mode:multiply;
 }
 
@@ -128,6 +130,129 @@ a{ color:inherit; }
 /* ============================================================
    AMBIENT MOTION — butterflies & petals
 ============================================================ */
+
+/* PNG butterflies — fixed to viewport so they glide across ALL sections */
+.png-butterfly{
+  position:fixed;
+  pointer-events:none;
+  z-index:999;
+  will-change:transform;
+  filter:drop-shadow(0 3px 8px rgba(91,59,36,0.18));
+}
+.png-butterfly img{
+  display:block;
+  width:100%;
+  height:auto;
+}
+
+/* Butterfly 1 — long lazy arc, left → right, top half of screen */
+.bfly-png-1{
+  width:52px;
+  animation: bflyPath1 28s ease-in-out infinite;
+}
+.bfly-png-1 img{
+  animation: bflyFlap1 0.55s ease-in-out infinite alternate;
+}
+@keyframes bflyPath1{
+  0%  { transform:translate(-70px, 18vh) rotate(8deg)  scaleX(1);   }
+  12% { transform:translate(18vw,  10vh) rotate(2deg)  scaleX(1);   }
+  25% { transform:translate(38vw,  22vh) rotate(-5deg) scaleX(-1);  }
+  40% { transform:translate(62vw,  8vh)  rotate(4deg)  scaleX(-1);  }
+  54% { transform:translate(85vw,  28vh) rotate(-3deg) scaleX(1);   }
+  62% { transform:translate(105vw, 20vh) rotate(6deg)  scaleX(1);   }
+  63% { transform:translate(-80px, 55vh) rotate(-4deg) scaleX(-1);  }
+  75% { transform:translate(20vw,  48vh) rotate(3deg)  scaleX(-1);  }
+  88% { transform:translate(55vw,  62vh) rotate(-6deg) scaleX(1);   }
+  100%{ transform:translate(-70px, 18vh) rotate(8deg)  scaleX(1);   }
+}
+@keyframes bflyFlap1{
+  from{ transform:scaleY(1);    }
+  to  { transform:scaleY(0.55); }
+}
+
+/* Butterfly 2 — tighter wander, right → left, lower half */
+.bfly-png-2{
+  width:42px;
+  animation: bflyPath2 22s ease-in-out infinite;
+  animation-delay: -9s;
+}
+.bfly-png-2 img{
+  animation: bflyFlap2 0.48s ease-in-out infinite alternate;
+  animation-delay: -0.24s;
+}
+@keyframes bflyPath2{
+  0%  { transform:translate(110vw, 70vh) rotate(-7deg) scaleX(-1);  }
+  14% { transform:translate(78vw,  58vh) rotate(5deg)  scaleX(-1);  }
+  28% { transform:translate(52vw,  72vh) rotate(-2deg) scaleX(1);   }
+  42% { transform:translate(28vw,  60vh) rotate(6deg)  scaleX(1);   }
+  55% { transform:translate(8vw,   80vh) rotate(-5deg) scaleX(-1);  }
+  60% { transform:translate(-80px, 72vh) rotate(3deg)  scaleX(-1);  }
+  61% { transform:translate(110vw, 35vh) rotate(4deg)  scaleX(1);   }
+  75% { transform:translate(72vw,  24vh) rotate(-4deg) scaleX(1);   }
+  88% { transform:translate(44vw,  40vh) rotate(7deg)  scaleX(-1);  }
+  100%{ transform:translate(110vw, 70vh) rotate(-7deg) scaleX(-1);  }
+}
+@keyframes bflyFlap2{
+  from{ transform:scaleY(1);   }
+  to  { transform:scaleY(0.5); }
+}
+
+/* Butterfly 3 — diagonal sweep, bottom-left → top-right */
+.bfly-png-3{
+  width:46px;
+  animation: bflyPath3 25s ease-in-out infinite;
+  animation-delay: -5s;
+}
+.bfly-png-3 img{
+  animation: bflyFlap3 0.52s ease-in-out infinite alternate;
+  animation-delay: -0.15s;
+}
+@keyframes bflyPath3{
+  0%  { transform:translate(-60px, 85vh) rotate(12deg)  scaleX(1);   }
+  15% { transform:translate(25vw,  68vh) rotate(-3deg)  scaleX(1);   }
+  30% { transform:translate(48vw,  45vh) rotate(8deg)   scaleX(-1);  }
+  45% { transform:translate(70vw,  30vh) rotate(-5deg)  scaleX(-1);  }
+  60% { transform:translate(90vw,  15vh) rotate(6deg)   scaleX(1);   }
+  65% { transform:translate(110vw, 8vh)  rotate(-2deg)  scaleX(1);   }
+  66% { transform:translate(-70px, 50vh) rotate(5deg)   scaleX(-1);  }
+  80% { transform:translate(35vw,  40vh) rotate(-7deg)  scaleX(-1);  }
+  92% { transform:translate(12vw,  65vh) rotate(4deg)   scaleX(1);   }
+  100%{ transform:translate(-60px, 85vh) rotate(12deg)  scaleX(1);   }
+}
+@keyframes bflyFlap3{
+  from{ transform:scaleY(1);    }
+  to  { transform:scaleY(0.58); }
+}
+
+/* Butterfly 4 — center meander, slow and graceful */
+.bfly-png-4{
+  width:48px;
+  animation: bflyPath4 32s ease-in-out infinite;
+  animation-delay: -14s;
+}
+.bfly-png-4 img{
+  animation: bflyFlap4 0.6s ease-in-out infinite alternate;
+  animation-delay: -0.3s;
+}
+@keyframes bflyPath4{
+  0%  { transform:translate(50vw,  -10vh) rotate(-4deg)  scaleX(1);   }
+  10% { transform:translate(42vw,  12vh)  rotate(6deg)   scaleX(1);   }
+  22% { transform:translate(58vw,  28vh)  rotate(-3deg)  scaleX(-1);  }
+  35% { transform:translate(38vw,  42vh)  rotate(7deg)   scaleX(-1);  }
+  48% { transform:translate(62vw,  58vh)  rotate(-5deg)  scaleX(1);   }
+  60% { transform:translate(45vw,  72vh)  rotate(4deg)   scaleX(1);   }
+  72% { transform:translate(55vw,  85vh)  rotate(-6deg)  scaleX(-1);  }
+  78% { transform:translate(50vw,  105vh) rotate(3deg)   scaleX(-1);  }
+  79% { transform:translate(50vw,  -12vh) rotate(-2deg)  scaleX(1);   }
+  90% { transform:translate(48vw,  5vh)   rotate(5deg)   scaleX(1);   }
+  100%{ transform:translate(50vw,  -10vh) rotate(-4deg)  scaleX(1);   }
+}
+@keyframes bflyFlap4{
+  from{ transform:scaleY(1);   }
+  to  { transform:scaleY(0.52); }
+}
+
+/* Legacy .butterfly — kept for closing section small decorative spot */
 .butterfly{
   position:absolute; pointer-events:none; z-index:3;
   filter:drop-shadow(0 2px 6px rgba(91,59,36,0.15));
@@ -230,13 +355,23 @@ a{ color:inherit; }
 #page{
   opacity:0;
   transition:opacity 1.6s var(--ease);
+  overflow-x:clip;
 }
 #page.visible{ opacity:1; }
 
 section{
   position:relative;
   padding:118px 26px;
+  overflow:visible;
+}
+/* Clip decorative background layers without clipping fixed butterflies.
+   We use a dedicated .section-clip div that sits behind content. */
+.section-clip{
+  position:absolute;
+  inset:0;
   overflow:hidden;
+  pointer-events:none;
+  z-index:0;
 }
 .inner{
   max-width:520px;
@@ -363,7 +498,7 @@ h1,h2,h3{ margin:0; font-weight:500; }
    INVITATION
 ============================================================ */
 #invitation{ background:var(--paper-soft); }
-#invitation .bg-band{ background-image:url('assets/images/invitation-bg.png'); }
+#invitation .section-clip .bg-band{ background-image:url('assets/images/invitation-bg.png'); }
 #invitation .inner{ text-align:center; }
 #invitation p{ margin:0 0 6px; }
 .invite-lead{ font-size:17px; color:var(--ink-soft); line-height:1.8; font-weight:500; text-align:center; margin:0 auto 8px; }
@@ -423,7 +558,7 @@ h1,h2,h3{ margin:0; font-weight:500; }
    FAMILY
 ============================================================ */
 #family{ background:var(--paper-soft); }
-#family .bg-band{ background-image:url('assets/images/family-bg.png'); }
+#family .section-clip .bg-band{ background-image:url('assets/images/family-bg.png'); }
 .family-block{ margin-bottom:64px; }
 .family-block:last-child{ margin-bottom:0; }
 .family-name{
@@ -464,7 +599,7 @@ h1,h2,h3{ margin:0; font-weight:500; }
    JOURNEY
 ============================================================ */
 #journey{ background:var(--paper-soft); padding-top:130px; padding-bottom:130px; }
-#journey .bg-band{ background-image:url('assets/images/event-journey-bg.png'); }
+#journey .section-clip .bg-band{ background-image:url('assets/images/event-journey-bg.png'); }
 .journey-eyebrow{ font-size:13px; letter-spacing:0.44em; color:var(--ink-faint); margin-bottom:18px; font-weight:600; }
 .jline{
   display:flex; flex-direction:column; align-items:center;
@@ -712,6 +847,20 @@ h1,h2,h3{ margin:0; font-weight:500; }
   <rect width="100%" height="100%" filter="url(#noise)"/>
 </svg>
 
+<!-- PNG butterflies — fly across every section (fixed to viewport) -->
+<div class="png-butterfly bfly-png-1" aria-hidden="true">
+  <img src="assets/images/butterfly.png" alt="">
+</div>
+<div class="png-butterfly bfly-png-2" aria-hidden="true">
+  <img src="assets/images/butterfly (2).png" alt="">
+</div>
+<div class="png-butterfly bfly-png-3" aria-hidden="true">
+  <img src="assets/images/butterfly.png" alt="">
+</div>
+<div class="png-butterfly bfly-png-4" aria-hidden="true">
+  <img src="assets/images/butterfly (2).png" alt="">
+</div>
+
 <!-- ============================================================
      GATE — envelope opening video, the very first thing seen
 ============================================================ -->
@@ -746,8 +895,10 @@ h1,h2,h3{ margin:0; font-weight:500; }
 
   <!-- SECTION 2 — THE INVITATION -->
   <section id="invitation">
-    <div class="bg-band top"></div>
-    <div class="bg-band bottom"></div>
+    <div class="section-clip">
+      <div class="bg-band top"></div>
+      <div class="bg-band bottom"></div>
+    </div>
     <div class="inner">
       <p class="invite-lead reveal">Mr. Rahim.o &amp; Mrs. Suhara .p<br>cordially invite you to attend the</p>
       <div class="invite-caps reveal">Nikkah Ceremony</div>
@@ -785,8 +936,10 @@ h1,h2,h3{ margin:0; font-weight:500; }
 
   <!-- SECTION 4 — FAMILY -->
   <section id="family">
-    <div class="bg-band top"></div>
-    <div class="bg-band bottom"></div>
+    <div class="section-clip">
+      <div class="bg-band top"></div>
+      <div class="bg-band bottom"></div>
+    </div>
     <div class="inner">
       <div class="family-block">
         <div class="family-name reveal">Dr Ayisha Sherin</div>
@@ -832,8 +985,10 @@ h1,h2,h3{ margin:0; font-weight:500; }
 
   <!-- SECTION 6 — EVENT JOURNEY -->
   <section id="journey">
-    <div class="bg-band top"></div>
-    <div class="bg-band bottom"></div>
+    <div class="section-clip">
+      <div class="bg-band top"></div>
+      <div class="bg-band bottom"></div>
+    </div>
     <div class="inner">
       <div class="journey-eyebrow reveal">Event Journey</div>
       <div class="divider reveal"></div>
@@ -1000,6 +1155,8 @@ function openGate(){
   gate.classList.add('fading');
   page.classList.add('visible');
   document.body.classList.remove('locked');
+  // Reveal the PNG butterflies once the page is shown
+  document.querySelectorAll('.png-butterfly').forEach(b => b.classList.add('visible'));
   setTimeout(()=>{ gate.classList.add('gone'); }, 1350);
 }
 
