@@ -322,10 +322,11 @@ a{ color:inherit; }
 
 #open-btn{
   position:absolute; left:50%; bottom:9%; transform:translateX(-50%);
-  background:none;
-  border:none;
+  background:rgba(0,0,0,0.6);
+  border:2px solid rgba(255,255,255,0.8);
+  border-radius:8px;
   color:#FFFFFF;
-  padding:8px 10px;
+  padding:12px 24px;
   font-family:var(--font-display);
   font-size:16px;
   font-weight:700;
@@ -335,6 +336,13 @@ a{ color:inherit; }
   opacity:0;
   z-index:3;
   animation:fadeInUp 1.2s var(--ease) 0.4s forwards;
+  backdrop-filter:blur(4px);
+  transition:all 0.3s ease;
+}
+#open-btn:hover{
+  background:rgba(0,0,0,0.8);
+  border-color:#FFFFFF;
+  transform:translateX(-50%) translateY(-2px);
 }
 #open-btn.hidden{ display:none; }
 @keyframes fadeInUp{
@@ -930,7 +938,7 @@ h1,h2,h3{ margin:0; font-weight:500; }
       <div class="bg-band bottom"></div>
     </div>
     <div class="inner">
-      <p class="invite-lead reveal">Mr. Rahim.o &amp; Mrs. Suhara .p<br>cordially invite you to attend the</p>
+      <p class="invite-lead reveal">Mr. Rahim.o(Late) &amp; Mrs. Suhara .p<br>We cordially invite you to attend the</p>
       <div class="invite-caps reveal">Nikkah Ceremony</div>
       <p class="invite-lead reveal" style="margin-bottom:0;">of their beloved Daughter</p>
       <h2 class="invite-name reveal">Dr Ayisha Sherin</h2>
@@ -975,7 +983,7 @@ h1,h2,h3{ margin:0; font-weight:500; }
         <div class="family-name reveal">Dr Ayisha Sherin</div>
         <div class="family-side reveal">
           <span class="label">Daughter Of</span>
-          <div class="names">Rahim.o<span class="amp">&amp;</span>Suhara .p</div>
+          <div class="names">Rahim.o(Late)<span class="amp">&amp;</span>Suhara .p</div>
         </div>
         <div class="divider reveal" style="margin:26px auto;"></div>
         <div class="family-side reveal">
@@ -1006,9 +1014,9 @@ h1,h2,h3{ margin:0; font-weight:500; }
       <div class="nikkah-day reveal">18</div>
       <div class="nikkah-month reveal">October</div>
       <div class="nikkah-year reveal">2026</div>
-      <div class="nikkah-venue reveal">Thanal (HO)</div>
-      <div class="nikkah-loc reveal">Cheruvannur, Kozhikode</div>
-      <a class="btn reveal" href="https://www.google.com/maps/search/?api=1&query=Thanal+HO+Cheruvannur+Kozhikode" target="_blank" rel="noopener">View Location</a>
+      <div class="nikkah-venue reveal">KAPPILO AUDITORIUM</div>
+      <div class="nikkah-loc reveal">Kambalakkad</div>
+      <a class="btn reveal" href="https://maps.app.goo.gl/xlua6aIJCWux9ApuI" target="_blank" rel="noopener">View Location</a>
     </div>
     <div class="butterfly" style="top:12%; left:14%; width:30px;" id="bfly-nikkah"></div>
   </section>
@@ -1026,10 +1034,10 @@ h1,h2,h3{ margin:0; font-weight:500; }
         <div class="jstop reveal">
           <div class="jstop-card">
             <span class="jnum">01</span>
-            <div class="jdate">17 October 2026</div>
-            <div class="jevent">Mehandi</div>
-            <div class="jplace">Rahim Manzil House<br>Anjukunnu, Wayanad</div>
-            <a class="btn jbtn" href="https://www.google.com/maps/search/?api=1&query=Rahim+Manzil+House+Anjukunnu+Wayanad" target="_blank" rel="noopener">
+            <div class="jdate">18 October 2026</div>
+            <div class="jevent">Nikkah</div>
+            <div class="jplace">KAPPILO AUDITORIUM<br>Kambalakkad</div>
+            <a class="btn jbtn" href="https://maps.app.goo.gl/xlua6aIJCWux9ApuI" target="_blank" rel="noopener">
               <svg class="jpin" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 21s7-7.58 7-12a7 7 0 10-14 0c0 4.42 7 12 7 12z" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="9" r="2.4" stroke="currentColor" stroke-width="1.4"/></svg>
               Get Directions
             </a>
@@ -1039,19 +1047,6 @@ h1,h2,h3{ margin:0; font-weight:500; }
         <div class="jstop reveal">
           <div class="jstop-card">
             <span class="jnum">02</span>
-            <div class="jdate">18 October 2026</div>
-            <div class="jevent">Nikkah</div>
-            <div class="jplace">Thanal (HO)<br>Cheruvannur, Kozhikode</div>
-            <a class="btn jbtn" href="https://www.google.com/maps/search/?api=1&query=Thanal+HO+Cheruvannur+Kozhikode" target="_blank" rel="noopener">
-              <svg class="jpin" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 21s7-7.58 7-12a7 7 0 10-14 0c0 4.42 7 12 7 12z" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="9" r="2.4" stroke="currentColor" stroke-width="1.4"/></svg>
-              Get Directions
-            </a>
-          </div>
-        </div>
-        <div class="jconnector reveal"></div>
-        <div class="jstop reveal">
-          <div class="jstop-card">
-            <span class="jnum">03</span>
             <div class="jdate">18 October 2026</div>
             <div class="jevent">Reception</div>
             <div class="jplace">KAPPILO AUDITORIUM<br>Kambalakkad</div>
@@ -1104,6 +1099,15 @@ h1,h2,h3{ margin:0; font-weight:500; }
     </div>
   </section> -->
 
+  <!-- WISHES -->
+  <!-- <section id="wishes" style="background:var(--paper-soft); padding:80px 26px;">
+    <div class="inner">
+      <div class="eyebrow reveal" style="margin-bottom:24px;">With Love</div>
+      <div class="wishes-text reveal" style="font-size:18px; color:var(--ink-soft); font-style:italic; margin-bottom:12px;">Wishes from</div>
+      <div class="wishes-names reveal" style="font-size:clamp(24px,6vw,32px); color:var(--copper-deep); font-weight:700; letter-spacing:0.06em;">Navas &amp; Shahul</div>
+    </div>
+  </section> -->
+
   <!-- CLOSING -->
   <section id="closing">
     <div class="inner">
@@ -1111,6 +1115,9 @@ h1,h2,h3{ margin:0; font-weight:500; }
       <div class="closing-names reveal">Ayisha &amp; Fayas</div>
       <div class="closing-date reveal">18 . 10 . 2026</div>
       <div class="closing-tag reveal">Forever begins here</div>
+      <div class="divider reveal" style="margin:32px auto 24px;"></div>
+      <div class="closing-wishes reveal" style="font-size:14px; color:var(--ink-soft); font-style:italic; margin-bottom:8px;">Wishes from</div>
+      <div class="closing-wishes-names reveal" style="font-size:18px; color:var(--copper-deep); font-weight:600; letter-spacing:0.08em;">Navas &amp; Shahul</div>
     </div>
   </section>
 
